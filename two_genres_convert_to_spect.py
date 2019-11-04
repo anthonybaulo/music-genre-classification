@@ -15,7 +15,7 @@ warnings.filterwarnings('ignore')
 
 META_DIR = Path('data/fma_metadata')
 AUDIO_DIR = Path('data/fma_small')
-CONVERTED_DIR = Path('data/converted/rock_inst')
+CONVERTED_DIR = Path('data/converted/rock_hiphop')
 
 # Helper funcitons
 # From https://github.com/mdeff/fma/blob/master/utils.py
@@ -102,11 +102,11 @@ df_all['track_id'] = df_all.index
 
 ## Trim down to 2 genres
 rock = df_all[('track', 'genre_top')] == 'Rock'
-inst = df_all[('track', 'genre_top')] == 'Instrumental'
-mask = rock | inst
+hiphop = df_all[('track', 'genre_top')] == 'Hip-Hop'
+mask = rock | hiphop
 two_genre = df_all[mask]
 
-genre_dict = {'Rock': 0, 'Instrumental': 1}
+genre_dict = {'Rock': 0, 'Hip-Hop': 1}
 
 ## Create train, validation and test subsets
 df_train = two_genre[two_genre[('set', 'split')] == 'training'  ]
