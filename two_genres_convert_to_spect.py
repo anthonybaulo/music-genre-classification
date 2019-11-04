@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 import os
@@ -60,14 +59,6 @@ def create_spectrogram(track_id):
     spect = librosa.feature.melspectrogram(y=y, sr=sr,n_fft=2048, hop_length=512)
     spect = librosa.power_to_db(spect, ref=np.max)
     return spect.T
-
-def plot_spect(track_id):
-    spect = create_spectrogram(track_id)
-    print(spect.shape)
-    plt.figure(figsize=(10, 4))
-    librosa.display.specshow(spect.T, y_axis='mel', fmax=8000, x_axis='time')
-    plt.colorbar(format='%+2.0f dB')
-    plt.show()
     
 def create_array(df, genre_dict):
     genres = []
@@ -87,8 +78,8 @@ def create_array(df, genre_dict):
             X_spect = np.append(X_spect, [spect], axis=0)
             genres.append(genre_dict[genre])
             if count%100 == 0:
-                print("Processed {} of {} - track {}"
-                      .format(count, total, track_id))
+                print("Processed {} of {}"
+                      .format(count, total))
         except:
             print("Couldn't process: {} of {} - track {}"
                   .format(count, total, track_id))
@@ -122,7 +113,7 @@ df_train = two_genre[two_genre[('set', 'split')] == 'training'  ]
 df_valid = two_genre[two_genre[('set', 'split')] == 'validation']
 df_test  = two_genre[two_genre[('set', 'split')] == 'test'      ]
 
-# Create Spectrogram Arrays
+# Create/Shuffle Spectrogram Arrays
 def shuffle(X, y):
     assert len(X) == len(y)
     p = np.random.permutation(len(X))
