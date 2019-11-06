@@ -1,7 +1,7 @@
-# This must be executed from the data/ directory
+# Execute from the data/ directory
 # 
 # Example usage:
-# $ python convert.py Rock Hip-Hop --meta ./fma_metadata/tracks.csv --audio ./fma_small
+# $ python convert.py Rock Hip-Hop --meta ./fma_metadata/tracks.csv --audio ./fma_small --size small
  
 import os
 import argparse
@@ -21,16 +21,19 @@ parser.add_argument('--meta', dest='tracks', default='./fma_metadata/tracks.csv'
                     help='path to the metadata tracks.csv')
 parser.add_argument('--audio', dest='audio', default='./fma_small',
                     help='path to top directory of audio files')
+parser.add_argument('--size', dest='size', default='small',
+                    help='size of FMA dataset')
 args = parser.parse_args()
 
 # Populate global variables
 GENRES = args.genres
 META_DIR = Path(args.tracks)
 AUDIO_DIR = Path(args.audio)
+SIZE = args.size
+
 SPLITS = ['train', 'validation', 'test']
+TRACKS = pd.read_csv(META_DIR, index_col=0, header=[0, 1])
 
-
-# Helper funcitons
 
 # From https://github.com/mdeff/fma/blob/master/utils.py
 def get_audio_path(audio_dir, track_id):
@@ -81,10 +84,15 @@ def create_spectrogram(track_id):
     spect = librosa.power_to_db(spect, ref=np.max)
     return (spect.T + 80) / 80
 
+
+def get_df(genre, split, size=SIZE):
+    pass
+
+
 # Based on https://github.com/priya-dwivedi/Music_Genre_Classification/
 def create_array(df, genre_dict):
     '''
-    Takes a pandas dataframe and creates numpy arrays of the melspectrograms
+    Creates numpy arrays (melspectrograms) of tracks in dataframe.
 
     Parameters
     ----------
@@ -94,7 +102,7 @@ def create_array(df, genre_dict):
 
     Returns
     -------
-    
+
     '''
     genres = []
     X_spect = np.empty((0, 640, 128))
@@ -124,8 +132,8 @@ def create_array(df, genre_dict):
 
 
 if __name__ == "__main__":
-    # Create directory structure if it doesn't exist
-
-    # for split in splits:
-    #     os.makedirs(split, exist_ok=True)
+    # Create directory structure
+    for split in SPLITS:
+        for genre in GENRES:
+            os.makedirs(f'{split}/{genre}', exist_ok=True)
     
