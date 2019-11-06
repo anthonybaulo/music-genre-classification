@@ -30,10 +30,14 @@ GENRES = args.genres
 META_DIR = Path(args.tracks)
 AUDIO_DIR = Path(args.audio)
 SIZE = args.size
-
 SPLITS = ['train', 'validation', 'test']
-TRACKS = pd.read_csv(META_DIR, index_col=0, header=[0, 1])
 
+# Create appropriate Dataframe
+TRACKS = pd.read_csv(META_DIR, index_col=0, header=[0, 1])
+keep_cols = [('set', 'split'), ('set', 'subset'),('track', 'genre_top')]
+TRACKS = TRACKS[keep_cols]
+TRACKS = TRACKS[TRACKS[('set', 'subset')] == SIZE]
+TRACKS['track_id'] = TRACKS.index
 
 # From https://github.com/mdeff/fma/blob/master/utils.py
 def get_audio_path(audio_dir, track_id):
