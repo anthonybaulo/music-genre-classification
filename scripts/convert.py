@@ -30,14 +30,16 @@ GENRES = args.genres
 META_DIR = Path(args.tracks)
 AUDIO_DIR = Path(args.audio)
 SIZE = args.size
-SPLITS = ['train', 'validation', 'test']
+SPLITS = ['training', 'validation', 'test']
 
-# Create appropriate Dataframe
+# Create Dataframe of metadata
 TRACKS = pd.read_csv(META_DIR, index_col=0, header=[0, 1])
 keep_cols = [('set', 'split'), ('set', 'subset'),('track', 'genre_top')]
 TRACKS = TRACKS[keep_cols]
 TRACKS = TRACKS[TRACKS[('set', 'subset')] == SIZE]
 TRACKS['track_id'] = TRACKS.index
+
+# Helper functions
 
 # From https://github.com/mdeff/fma/blob/master/utils.py
 def get_audio_path(audio_dir, track_id):
@@ -70,7 +72,7 @@ def get_audio_path(audio_dir, track_id):
 # Based on https://github.com/priya-dwivedi/Music_Genre_Classification/
 def create_spectrogram(track_id):
     '''
-    Create transposed melspectrogram, normalized
+    Create melspectrogram, normalized between 0-1
 
     Parameters
     ----------
@@ -86,11 +88,31 @@ def create_spectrogram(track_id):
     y, sr = librosa.load(filename)
     spect = librosa.feature.melspectrogram(y=y, sr=sr,n_fft=2048, hop_length=512)
     spect = librosa.power_to_db(spect, ref=np.max)
-    return (spect.T + 80) / 80
+    return (spect + 80) / 80
 
 
-def get_df(genre, split, size=SIZE):
-    pass
+def get_genre_split_df(genre, split):
+    '''
+    Create dataframe for specific genre/split combo.
+
+    Parameters
+    ----------
+    genre : str
+        Genre name, matching csv format
+    split : str
+        Split name, matching csv format
+    
+    Returns
+    -------
+    pd.DataFrame
+        Containing specified genre/split combo
+    '''
+    genre_mask = TRACKS[('track', 'genre_top')] == genre
+    df = TRACKS[genre_mask]
+    
+    split_mask = df[('set', 'split')] == split
+    df = df[split_mask]
+    return df
 
 
 # Based on https://github.com/priya-dwivedi/Music_Genre_Classification/
