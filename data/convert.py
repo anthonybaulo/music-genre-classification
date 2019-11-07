@@ -12,6 +12,7 @@ import numpy as np
 import librosa
 import pandas as pd
 from pathlib import Path
+from datetime import datetime
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -130,6 +131,7 @@ def create_arrays(df, verbose=True):
     for _, row in df.iterrows():
         # Skips records in case of errors
         try:
+            start = datetime.now()
             count += 1
 
             # Get metadata
@@ -152,8 +154,9 @@ def create_arrays(df, verbose=True):
 
             if verbose:
                 if count%100 == 0:
-                    print("Processed {} of {}"
-                          .format(count, total))
+                    elapsed = datetime.now() - start
+                    print("Processed {} of {} in {} minutes"
+                          .format(count, total, elapsed.seconds/60))
         except:
             if verbose:
                 print("Couldn't process: {} of {} - track {}"
@@ -178,9 +181,6 @@ if __name__ == "__main__":
     shapes = create_arrays(df)
 
     # Save shapes
-    try:
-        fname = './shapes/{}_shapes.npy'.format('_'.join(GENRES))
-    except:
-        fname = './shapes/shapes.npy'
+    fname = './shapes/{}_shapes.npy'.format('_'.join(GENRES))
     np.save(fname, shapes)
-    
+
