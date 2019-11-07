@@ -25,9 +25,9 @@ from tensorflow.keras.utils import to_categorical
 
 def build_model():
     model = Sequential()
-    model.add(Conv2D(32, (9, 9), input_shape = (128, 640, 1), 
-                    padding='same', 
-                    activation='relu'))
+    model.add(Conv2D(32, (9, 9), 
+                    input_shape = (128, 640, 1), 
+                    padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size = (2, 2)))
     model.add(Dropout(0.2))
 
@@ -53,9 +53,11 @@ def build_model():
                 metrics=['accuracy'])
 
 
+
+
 checkpoint_callback = ModelCheckpoint('../models/model2_with_datagen_best_val_loss.h5', 
                                       monitor='val_loss', mode='min',
-                                      save_best_only=True, verbose=1)
+                                      save_best_only=True, verbose=0)
 
 reducelr_callback = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.8, 
                                       patience=2, min_delta=0.005, verbose=1)
