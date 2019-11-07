@@ -30,7 +30,7 @@ def create_dirs(splits, genres):
     '''
     for split in splits:
         for genre in genres:
-            os.makedirs(f'{split}/{genre}', exist_ok=True)
+            os.makedirs(f'../data/{split}/{genre}', exist_ok=True)
     os.makedirs('../data/shapes', exist_ok=True)
 
 # From https://github.com/mdeff/fma/blob/master/utils.py
@@ -145,7 +145,7 @@ def create_arrays(df, audio_dir, verbose=True):
                 spect = spect[:, :640]
 
                 # Save to appropriate folder
-                fname = './{}/{}/{:06d}.npy'.format(split, genre, track_id)
+                fname = '../data/{}/{}/{:06d}.npy'.format(split, genre, track_id)
                 np.save(fname, spect)
 
             if verbose:
