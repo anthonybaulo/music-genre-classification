@@ -127,11 +127,11 @@ def create_arrays(df, verbose=True):
     shapes = []
     total = len(df)
     count = 0
+    start = datetime.now()
     
     for _, row in df.iterrows():
         # Skips records in case of errors
         try:
-            start = datetime.now()
             count += 1
 
             # Get metadata
@@ -155,6 +155,7 @@ def create_arrays(df, verbose=True):
             if verbose:
                 if count%100 == 0:
                     elapsed = datetime.now() - start
+                    start = datetime.now()
                     print("Processed {} of {} in {} minutes"
                           .format(count, total, elapsed.seconds/60))
         except:
