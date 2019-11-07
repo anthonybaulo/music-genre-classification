@@ -131,8 +131,6 @@ class DataGenerator(Sequence):
 # TODO: Create function to save model plots
 # Consider directory and informative filename
 def show_summary_stats(history, savepath=None, dpi=200):
-    # List all data in history
-    print(history.history.keys())
 
     # Summarize history for accuracy
     plt.figure(figsize=(5,3))
