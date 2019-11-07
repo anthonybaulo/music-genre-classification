@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir ../data
+mkdir ../models
 cd ../data
 
 curl -O https://os.unil.cloud.switch.ch/fma/fma_metadata.zip
