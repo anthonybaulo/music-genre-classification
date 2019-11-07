@@ -168,6 +168,7 @@ if __name__ == "__main__":
     for split in SPLITS:
         for genre in GENRES:
             os.makedirs(f'{split}/{genre}', exist_ok=True)
+    os.makedirs('shapes', exist_ok=True)
     
     # Get appropriate df
     metadata = get_metadata()
@@ -176,6 +177,10 @@ if __name__ == "__main__":
     # Convert and store np arrays
     shapes = create_arrays(df)
 
-    # Save shapes in current directory
-    np.save('./shapes.npy', shapes)
+    # Save shapes
+    try:
+        fname = './shapes/{}_shapes.npy'.format('_'.join(GENRES))
+    except:
+        fname = './shapes/shapes.npy'
+    np.save(fname, shapes)
     
