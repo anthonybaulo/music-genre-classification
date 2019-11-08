@@ -51,7 +51,7 @@ def build_model():
 
 def get_cb_list(name):
     earlystop_callback = EarlyStopping(monitor='val_loss', mode='min', 
-                                       patience=6, min_delta=0.005, verbose=1,   
+                                       patience=10, min_delta=0.005, verbose=1,   
                                        restore_best_weights=True)
     
     checkpoint_callback = ModelCheckpoint(f'./models/{name}_weights_best_val_loss.h5', 
@@ -115,4 +115,4 @@ def main(name='model3'):
 
     
 if __name__ == "__main__":
-    main()
+    main(name='model3')
