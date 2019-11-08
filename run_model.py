@@ -52,18 +52,24 @@ def build_model():
                 optimizer=opt,
                 metrics=['accuracy'])
 
+    return model
 
 
+def main():
+    model = build_model()
 
-checkpoint_callback = ModelCheckpoint('../models/model2_with_datagen_best_val_loss.h5', 
-                                      monitor='val_loss', mode='min',
-                                      save_best_only=True, verbose=0)
+    checkpoint_callback = ModelCheckpoint('../models/model2_with_datagen_best_val_loss.h5', 
+                                        monitor='val_loss', mode='min',
+                                        save_best_only=True, verbose=0)
 
-reducelr_callback = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.8, 
-                                      patience=2, min_delta=0.005, verbose=1)
+    reducelr_callback = ReduceLROnPlateau(monitor='val_loss', mode='min', factor=0.8, 
+                                        patience=2, min_delta=0.005, verbose=1)
 
-callbacks_list = [checkpoint_callback, reducelr_callback]
+    callbacks_list = [checkpoint_callback, reducelr_callback]
 
-history = model.fit_generator(generator=datagen, epochs=25,
-                              validation_data=valid_datagen, verbose=1, 
-                              callbacks=callbacks_list)
+    history = model.fit_generator(generator=datagen, epochs=25,
+                                validation_data=valid_datagen, verbose=1, 
+                                callbacks=callbacks_list)
+
+if __name__ == "__main__":
+    main()
