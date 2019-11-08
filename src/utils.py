@@ -28,7 +28,7 @@ def load_compile_model(json_path, weights_path, opt='adam'):
     return loaded    
 
 
-def get_true_pred_targets(model, test_datagen):
+def get_ytrue_ypred_targets(model, test_datagen):
     y_pred = model.predict_generator(test_datagen)
     y_pred = np.argmax(y_pred, axis=1)
 
