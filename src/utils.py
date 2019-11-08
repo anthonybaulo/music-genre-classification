@@ -8,6 +8,9 @@ from matplotlib import cm
 from sklearn.metrics import confusion_matrix
 from tensorflow.keras.models import model_from_json
 
+
+# Save/load funcs may be skipped in favor of 
+# keras.save() and load_model()
 def save_model_to_json(model, fpath):
     model_json = model.to_json()
     with open(fpath, "w") as json_file:
@@ -57,7 +60,6 @@ def save_summary_plots(history, fpath='plt.png', dpi=200):
     ax2.legend(['Train', 'Test'], loc='best')
     
     plt.subplots_adjust(wspace=0.3)
-
     plt.savefig(fpath, dpi=dpi)
     
     
