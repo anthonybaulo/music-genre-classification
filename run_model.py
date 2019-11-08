@@ -66,35 +66,36 @@ def get_cb_list():
 
     return callbacks_list
 
-def get_datagens(include=['Rock', 'Hip-Hop'], splits=['training', 'validation', 'test']):
+
+def get_datagens(include=['Rock', 'Hip-Hop'], splits=['training', 'validation', 'test'], 
+                 bs=[64,16,1]):
     datagens = []
-    bs = 1
     test = False
 
-    for split in splits:
-        if 'train' in split:
-            bs = 64
-        if 'valid' in split:
-            bs = 16
+    for split, bs in zip(splits, bs):
         if 'test' in split:
             test = True
 
-        datagen = DataGenerator('./data/'+split, include=include, 
+        datagen = DataGenerator('../data/'+split, include=include, 
                                 batch_size=bs, dim=(128,640), 
                                 n_channels=1, test=test)
-    
-        datagens.append(datagen)
 
-    return *datagens
+        datagens.append(datagen)
+    
+    return tuple(datagens)
+
 
 def main():
     # Build model
     model = build_model()
 
     # Get callbacks
-    get_cb_list()
+    cbs = get_cb_list()
+    
+    # Get datagens
+    train_datagen, valid_datagen, test_datagen = get_datagens()
 
-
+    
     history = model.fit_generator(generator=datagen, epochs=25,
                                   validation_data=valid_datagen, verbose=1, 
                                   callbacks=callbacks_list)
