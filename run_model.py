@@ -49,15 +49,12 @@ def build_model():
 
     opt = Adam(lr=0.001)
     model.compile(loss='categorical_crossentropy',
-                optimizer=opt,
-                metrics=['accuracy'])
+                  optimizer=opt,
+                  metrics=['accuracy'])
 
     return model
 
-
-def main():
-    model = build_model()
-
+def get_cb_list():
     checkpoint_callback = ModelCheckpoint('../models/model2_with_datagen_best_val_loss.h5', 
                                         monitor='val_loss', mode='min',
                                         save_best_only=True, verbose=0)
@@ -67,9 +64,41 @@ def main():
 
     callbacks_list = [checkpoint_callback, reducelr_callback]
 
+    return callbacks_list
+
+def get_datagens(include=['Rock', 'Hip-Hop'], splits=['training', 'validation', 'test']):
+    datagens = []
+    bs = 1
+    test = False
+
+    for split in splits:
+        if 'train' in split:
+            bs = 64
+        if 'valid' in split:
+            bs = 16
+        if 'test' in split:
+            test = True
+
+        datagen = DataGenerator('./data/'+split, include=include, 
+                                batch_size=bs, dim=(128,640), 
+                                n_channels=1, test=test)
+    
+        datagens.append(datagen)
+
+    return *datagens
+
+def main():
+    # Build model
+    model = build_model()
+
+    # Get callbacks
+    get_cb_list()
+
+
     history = model.fit_generator(generator=datagen, epochs=25,
-                                validation_data=valid_datagen, verbose=1, 
-                                callbacks=callbacks_list)
+                                  validation_data=valid_datagen, verbose=1, 
+                                  callbacks=callbacks_list)
+
 
 if __name__ == "__main__":
     main()
