@@ -64,7 +64,7 @@ def save_summary_plots(history, fpath='plt.png', dpi=200):
     
     
 def save_confusion_matrix(y_true, y_pred, target_names, fpath='cm.png', dpi=200):
-    fig, ax = plt.subplots(figsize=(6,6))
+    fig, ax = plt.subplots(figsize=(7,6))
     
     mat = confusion_matrix(y_true, y_pred)
 
@@ -78,4 +78,5 @@ def save_confusion_matrix(y_true, y_pred, target_names, fpath='cm.png', dpi=200)
     plt.yticks(rotation=45)
     plt.xlabel('Actual', size=15)
     plt.ylabel('Predicted', size=15)
-    plt.savefig(fpath, dpi=dpi)
+    plt.margins(4)
+    plt.savefig(fpath, dpi=dpi, bbox_inches='tight', pad_inches=0.2)
