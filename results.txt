@@ -1,0 +1,14 @@
+model3
+
+Accuracy on test: 93.50%
+
+              precision    recall  f1-score   support
+
+     Hip-Hop       0.92      0.95      0.94       100
+        Rock       0.95      0.92      0.93       100
+
+    accuracy                           0.94       200
+   macro avg       0.94      0.94      0.93       200
+weighted avg       0.94      0.94      0.93       200
+
+
