@@ -12,3 +12,17 @@ Accuracy on test: 93.50%
 weighted avg       0.94      0.94      0.93       200
 
 
+model4
+
+Accuracy on test: 84.00%
+
+              precision    recall  f1-score   support
+
+     Hip-Hop       0.85      0.92      0.88       100
+Instrumental       0.88      0.79      0.83       100
+        Rock       0.79      0.81      0.80       100
+
+    accuracy                           0.84       300
+   macro avg       0.84      0.84      0.84       300
+weighted avg       0.84      0.84      0.84       300
+
