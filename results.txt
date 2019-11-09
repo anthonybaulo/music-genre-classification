@@ -11,6 +11,7 @@ Accuracy on test: 93.50%
    macro avg       0.94      0.94      0.93       200
 weighted avg       0.94      0.94      0.93       200
 
+########################
 
 model4
 
@@ -26,3 +27,19 @@ Instrumental       0.88      0.79      0.83       100
    macro avg       0.84      0.84      0.84       300
 weighted avg       0.84      0.84      0.84       300
 
+########################
+
+model5
+
+Accuracy on test: 66.25%
+
+              precision    recall  f1-score   support
+
+        Folk       0.47      0.42      0.44       100
+     Hip-Hop       0.90      0.94      0.92       100
+Instrumental       0.67      0.52      0.58       100
+        Rock       0.61      0.77      0.68       100
+
+    accuracy                           0.66       400
+   macro avg       0.66      0.66      0.66       400
+weighted avg       0.66      0.66      0.66       400
