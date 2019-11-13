@@ -1,5 +1,5 @@
 # Music Classification with a Convolutional Neural Network
-Classifying audio clips by genre using a Convoultional Neural Network
+
 
 ## Intro
 This project explores the application of a CNN to audio, using 2D Convolutions. This endeavor falls under the science of Music Information Retrieval (MIR), which has some well-known applications in Recommender Systems (Spotify) and Audio Identification (Shazam).
