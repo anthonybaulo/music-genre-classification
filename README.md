@@ -12,7 +12,7 @@ The data comes from the [Free Music Archive](https://github.com/mdeff/fma) open-
 CNNs are best known for their state of the art performance on image classification. To achieve this, they use a series of filters to scan the image for features, and at each layer of the network, more complex features are found. <br>
 The networks sees images as arrays of numbers, with each number representing a pixel value.
 
-<img src="images/.png" width="50%" height="50%" />
+<img src="images/image_as_array.png" width="50%" height="50%" />
 
 <img src="images/charts/spec_rock.png" width="50%" height="50%" />
 <img src="images/charts/spec_hiphop.png" width="50%" height="50%" />
