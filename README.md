@@ -16,12 +16,16 @@ In order to use this network with audio, it must first be converted to a format 
 <img src="images/audio_as_array.png" width="70%" height="70%" />
 
 ## Rock vs. Hip-Hop
-<img src="images/rock_v_hiphop.png" width="50%" height="50%"/>
+Our first test will be to see how the network distinguishes between rock and hip-hop.
+<img src="images/rock_v_hiphop.png"/>
 
 Before we train the model, we can reduce the arrays to 2 principal components and plot them, to see that the genres do tend to cluster.
 
-<img src="images/charts/PCA_rock_hiphop.png" width="50%" height="50%" />
+<img src="images/charts/PCA_rock_hiphop.png" width="40%"/>
+
+After training on 800 examples of each genre, the model achieved 94% accuracy on a balanced test set of 200.
+
+<img src="images/charts/model3_summary.png" width="90% />
 
 
-<img src="images/charts/model3_summary.png" width="80%" height="80%" />
-<img src="images/charts/model3_cm.png" width="40%" height="40%" />
+<img src="images/charts/model3_cm.png" width="40%" />
