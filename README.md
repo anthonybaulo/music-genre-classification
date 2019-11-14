@@ -9,23 +9,34 @@ CNNs are best known for their state of the art performance on image classificati
 
 ![https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png](https://upload.wikimedia.org/wikipedia/commons/6/63/Typical_cnn.png)
 
+
 The networks sees images as arrays of numbers, with each number representing a pixel value.
-<img src="images/image_as_array.png" width="60%" height="60%" />
+<p align="center">
+  <img src="images/image_as_array.png" width="60%" height="60%" />
+</p>
 
 In order to use this network with audio, it must first be converted to a format similar to an image. The melspectrogram offers such a format, where the numbers in the array represent decibel ratings at each timestep and frequency.
-<img src="images/audio_as_array.png" width="70%" height="70%" />
+
+<p align="center">
+<img src="images/audio_as_array.png" width="70%"  />
+</p>
 
 ## Rock vs. Hip-Hop
-Our first test will be to see how the network distinguishes between rock and hip-hop.
+Our first test will be to see how the network distinguishes between Rock and Hip-Hop.
+
+<p align="center">
 <img src="images/rock_v_hiphop.png"/>
+</p>
 
 Before we train the model, we can reduce the arrays to 2 principal components and plot them, to see that the genres do tend to cluster.
 
+<p align="center">
 <img src="images/charts/PCA_rock_hiphop.png" width="40%"/>
+</p>
 
 After training on 800 examples of each genre, the model achieved 94% accuracy on a balanced test set of 200.
 
-<img src="images/charts/model3_summary.png" width="90% />
-
-
-<img src="images/charts/model3_cm.png" width="40%" />
+<p align="center">
+<img src="images/charts/model3_summary.png" height="90%" />
+<img src="images/charts/model3_cm.png" width="370px" />
+</p>
