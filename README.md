@@ -1,7 +1,4 @@
 # Music Classification with a Convolutional Neural Network
-
-
-## Intro
 This project explores the application of a CNN to audio, using 2D Convolutions. This endeavor falls under the science of Music Information Retrieval (MIR), which has some well-known applications in Recommender Systems (Spotify) and Audio Identification (Shazam).
 
 ## Data
@@ -15,10 +12,10 @@ The networks sees images as arrays of numbers, with each number representing a p
 
 <img src="images/image_as_array.png" width="50%" height="50%" />
 In order to use this network with audio, it must first be converted to a format similar to an image. The melspectrogram offers such a format, where the numbers in the array represent decibel ratings at each timestep and frequency.
-<img src="images/audio_as_array.png" width="50%" height="50%" />
+<img src="images/audio_as_array.png" width="60%" height="60%" />
 
-<img src="images/charts/spec_rock.png" width="50%" height="50%" />
-<img src="images/charts/spec_hiphop.png" width="50%" height="50%" />
+<img src="images/charts/spec_rock.png" width="50%" height="50%" align='left'/>
+<img src="images/charts/spec_hiphop.png" width="50%" height="50%" align='right'/>
 <img src="images/charts/PCA_rock_hiphop.png" width="50%" height="50%" />
 <img src="images/charts/model3_summary.png" width="80%" height="80%" />
 <img src="images/charts/model3_cm.png" width="40%" height="40%" />
