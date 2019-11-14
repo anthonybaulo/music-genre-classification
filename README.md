@@ -42,6 +42,7 @@ After training on 800 examples of each genre, the model achieved 94% accuracy on
 </p>
 
 ## Rock vs. Hip-Hop vs. Instrumental
+The next test was to add another genre.
 <p align="center">
   <img src="images/roc_v_hip_inst.png"/>
   <img src="images/charts/PCA_rock_hiphop_inst.png" width="40%" />
