@@ -12,6 +12,7 @@ This project explores the application of a CNN to audio, using 2D Convolutions. 
 [Navigating the repo / Reproducing the results](#nav)<br>
 
 ---
+---
 <a name="data"></a>
 ## Data
 The data comes from the [Free Music Archive](https://github.com/mdeff/fma) open-benchmark dataset.<br> 
@@ -97,6 +98,8 @@ These broad, subjective labels may seem to be hard for the network to learn.
 * Replicate the architecture of a state of the art image classification model
 * Compare to other networks, such as Conv1D to LSTM
 
+---
+---
 <a name="nav"></a>
 ## Reproducing the results
 *Specifically the three-genre model (Rock, Hip-Hip, Instrumental)
